@@ -43,7 +43,7 @@ void update_events(){
 
 void delete_events(){
     Scanner choose = new Scanner(System.in);
-    System.out.println("enter username");
+    System.out.println("enter eventname you went to delete");
     String eventname = choose.nextLine();
        for (EventDetails event : events) {
             if (event.name.equals(eventname)) {
@@ -120,6 +120,15 @@ class User extends Admin{
     User(){
 
     }
+   void display_events(){
+
+    }
+   void register_event(){
+        
+    }
+   void search_events(){
+
+    }
     void UserMenu() {
         Scanner choose = new Scanner(System.in);
         System.out.println("User Menu");
@@ -128,7 +137,19 @@ class User extends Admin{
         System.out.println("3.search events");
         System.out.println("Enter your choice from the menu");
         int choice = choose.nextInt();
+        switch (choice) {
+            case 1:
+                display_events();
+                break;
+            case 2:
+                register_event();
+                break;
+            case 3:
+                search_events();
+                break;
+    
     }
+}
 }
 public class Event {
     public static void main(String[] args) {
