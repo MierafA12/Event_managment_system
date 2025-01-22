@@ -1,4 +1,3 @@
-
 import java.util.*;
 class Admin{
     String username;
@@ -38,6 +37,21 @@ void update_events(){
     Scanner update_info = new Scanner(System.in) ; 
     System.out.println("Enter the event name to update");
     String eventname = update_info.nextLine();
+    for (EventDetails event : events) {
+        if (event.name.equals(eventname)) {
+            System.out.println("Enter new event name");
+            event.name = update_info.nextLine();
+            System.out.println("Enter new event date");
+            event.date = update_info.nextLine();
+            System.out.println("Enter new event time");
+            event.time = update_info.nextLine();
+            System.out.println("Enter new event location");
+            event.location = update_info.nextLine();
+            System.out.println("Event updated successfully.");
+            return;
+        }
+    System.out.println("there is no event in this name .enter valid  event name");   
+    }
  
 }
 
@@ -56,6 +70,7 @@ void delete_events(){
     }
 
 void display_event_registration(){
+
 }
 void delete_user_registration(){
 
@@ -100,15 +115,18 @@ void AdminMenu() {
            break;
            case 3:
            delete_events();
-          break;
-          case 4:
+            break;
+           case 4:
            display_event_registration();
             break;
             case 5:
             delete_user_registration();
             break;
-      
-    
+            case 6:
+            System.out.println("Logging out...");
+            return;
+            default:
+            System.out.println("Invalid choice. Please try again.");
         }
    } 
 }   
@@ -118,10 +136,17 @@ void AdminMenu() {
 
 class User extends Admin{
     User(){
-
+  
     }
-   void display_events(){
-
+    void display_events() {
+        if (events.isEmpty()) {
+            System.out.println("No events available.");
+        } else {
+            System.out.println("Available Events:");
+            for (EventDetails event : events) {
+                System.out.println(event);
+            }
+        }
     }
    void register_event(){
         
@@ -135,6 +160,7 @@ class User extends Admin{
         System.out.println("1.Display events");
         System.out.println("2.Register for event");
         System.out.println("3.search events");
+        System.out.println("4.Exit");
         System.out.println("Enter your choice from the menu");
         int choice = choose.nextInt();
         switch (choice) {
@@ -147,17 +173,23 @@ class User extends Admin{
             case 3:
                 search_events();
                 break;
-    
+            case 4:
+                System.out.println("Logging out...");
+                return;
+            default:
+            System.out.println("Invalid choice. Please try again."); 
     }
 }
 }
 public class Event {
     public static void main(String[] args) {
+        while (true) {
         Scanner menu = new Scanner(System.in);
         System.out.println("Event Management System");
         System.out.println("Menu:");
         System.out.println("1. Admin");
         System.out.println("2. User");
+        System.out.println("3. exit");
         System.out.println("Enter your choice:");
         int choice = menu.nextInt();
 
@@ -167,8 +199,12 @@ public class Event {
         } else if (choice == 2) {
             User user = new User();
             user.UserMenu();
+            } else if (choice == 3) {
+            System.out.println("Exiting the program...");
+            System.exit(0);
         } else {
             System.out.println("Invalid choice, please enter a valid choice.");
         }
     }
+}
 }
